@@ -1,0 +1,9 @@
+{
+    "extends": ["./node_modules/gts", "react-app", "plugin:react/recommended"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "env": {
+        "node": true,
+        "es6": true
+    }
+}
