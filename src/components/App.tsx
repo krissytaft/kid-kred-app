@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 import { Home } from './Home';
-import { Login } from './Login';
-import { Dashboard } from './Dashboard';
+import { AdminDashboard } from './Dashboards/AdminDashboard';
 
 
 import './App.css';
@@ -11,6 +10,9 @@ import { PublicRoute } from '../util/PublicRoute';
 import { PrivateRoute } from '../util/PrivateRoute';
 import { getToken, removeUserSession, setUserSession } from '../util/common';
 import { LoginServiceApi } from '../services/loginService';
+import SignInSide from './SignIn';
+import { TeacherDashboard } from './Dashboards/TeacherDashboard';
+import { StudentDashboard } from './Dashboards/StudentDashboard';
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -41,16 +43,13 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <div>
-          <div className="header">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/login">Login</NavLink><small>(Access without token only)</small>
-            <NavLink to="/dashboard">Dashboard</NavLink><small>(Access with token only)</small>
-          </div>
           <div className="content">
             <Routes>
-              <Route path="/" element={<Home/>}  />
-              <Route path="/login" element={<PublicRoute><Login/> </PublicRoute>}  />
-              <Route path="/dashboard" element={<PrivateRoute> <Dashboard/></PrivateRoute>}  />
+              <Route path="/" element={<Home />}  />
+              <Route path="/login" element={<PublicRoute><SignInSide/> </PublicRoute>}  />
+              <Route path="/adminDashboard" element={<PrivateRoute> <AdminDashboard/></PrivateRoute>}  />
+              <Route path="/teacherDashboard" element={<PrivateRoute> <TeacherDashboard/></PrivateRoute>}  />
+              <Route path="/studentDashboard" element={<PrivateRoute> <StudentDashboard/></PrivateRoute>}  />
             </Routes>
           </div>
         </div>
