@@ -36,12 +36,10 @@ export default function SignInSide() {
         setUserSession(signInResult.token, signInResult.user)
         // Is it a teacher or a student?
         if (signInResult.user.userType === UserType.Teacher) {
-            navigate('/teacherDashboard')
-        }
-        if (signInResult.user.userType === UserType.Student) {
+            navigate('/teacherDashboard/classrooms')
+        } else if (signInResult.user.userType === UserType.Student) {
             navigate('/studentDashboard')
-        }
-        else {
+        } else {
             navigate('/adminDashboard')
         }
         

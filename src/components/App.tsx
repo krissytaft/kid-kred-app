@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Home } from './Home';
 import { AdminDashboard } from './Dashboards/AdminDashboard';
@@ -11,8 +11,8 @@ import { PrivateRoute } from '../util/PrivateRoute';
 import { getToken, removeUserSession, setUserSession } from '../util/common';
 import { LoginServiceApi } from '../services/loginService';
 import SignInSide from './SignIn';
-import { TeacherDashboard } from './Dashboards/TeacherDashboard';
-import { StudentDashboard } from './Dashboards/StudentDashboard';
+import TeacherDashboard from './Dashboards/TeacherDashboard';
+import  StudentDashboard  from './Dashboards/StudentDashboard';
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -45,11 +45,11 @@ function App() {
         <div>
           <div className="content">
             <Routes>
-              <Route path="/" element={<Home />}  />
+              <Route path="/" element={<Home />} />
               <Route path="/login" element={<PublicRoute><SignInSide/> </PublicRoute>}  />
               <Route path="/adminDashboard" element={<PrivateRoute> <AdminDashboard/></PrivateRoute>}  />
-              <Route path="/teacherDashboard" element={<PrivateRoute> <TeacherDashboard/></PrivateRoute>}  />
-              <Route path="/studentDashboard" element={<PrivateRoute> <StudentDashboard/></PrivateRoute>}  />
+              <Route path="/teacherDashboard/*" element={<PrivateRoute> <TeacherDashboard/></PrivateRoute>}  />
+              <Route path="/studentDashboard/*" element={<PrivateRoute> <StudentDashboard/></PrivateRoute>}  />
             </Routes>
           </div>
         </div>

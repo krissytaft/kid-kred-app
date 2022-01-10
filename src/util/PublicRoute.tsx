@@ -9,5 +9,5 @@ import { getToken } from './common';
  */
 export function PublicRoute({ children }: any): JSX.Element {
     const token = getToken();
-    return !token ? children : <Navigate to="/dashboard" />;
+    return !token ? children : <Navigate to="/" />;
 }
